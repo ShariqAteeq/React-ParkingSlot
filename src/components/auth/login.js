@@ -1,7 +1,10 @@
 import React, { Component } from "react";
-import Signup from "./signUp";
 import { login } from "../../store/actions/authActions";
 import { connect } from "react-redux";
+import { Link } from 'react-router-dom';
+import {
+    ArrowRightOutlined
+  } from '@ant-design/icons';
 
 class Login extends Component {
   constructor(props) {
@@ -27,14 +30,18 @@ class Login extends Component {
   render() {
     return (
       <div className="bg">
+          <div>
+              <Link to = '/signup' className = "form-link">Signup <ArrowRightOutlined /></Link>
+          </div>
         <form className="form">
+        <h2 className = "form-title">Here you can Login</h2>
+          <p className = "form-text">Let's Join us :)</p>
           <div className="form-group">
             <label className="form-label">Email</label>
             <input
               type="email"
               id="email"
               name="email"
-              placeholder="enter email address"
               onChange={this.handleChange}
               value={this.state.email}
               className="form-field"
@@ -47,13 +54,12 @@ class Login extends Component {
               type="password"
               onChange={this.handleChange}
               id="password"
-              placeholder="enter password"
               value={this.state.password}
               className="form-field"
             />
           </div>
 
-          <button onClick={this.login}>Login</button>
+          <button onClick={this.login} className = "form-btn">Login</button>
         </form>
       </div>
     );

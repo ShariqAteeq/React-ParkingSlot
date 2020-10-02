@@ -1,6 +1,11 @@
 import React , { Component } from "react";
 import { signup } from '../../store/actions/authActions';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import {
+    ArrowRightOutlined
+  } from '@ant-design/icons';
+
 
 class Signup extends Component{
 constructor(props)
@@ -25,29 +30,41 @@ handleChange(e){
 }
 render()
 {
-    return(
-        <div>
-            <form>
-                <input
+    return (
+        <div className="bg">
+            <div>
+                <Link to = '/login' className = "form-link">Login <ArrowRightOutlined /></Link>
+            </div>
+          <form className="form">
+          <h2 className = "form-title">Create Account!</h2>
+            <p className = "form-text">Let's join us :)</p>
+            <div className="form-group">
+              <label className="form-label">Email</label>
+              <input
                 type="email"
                 id="email"
                 name="email"
-                placeholder="enter email address"
                 onChange={this.handleChange}
                 value={this.state.email}
-                />
-                <input
+                className="form-field"
+              />
+            </div>
+            <div className="form-group">
+              <label className="form-label">Password</label>
+              <input
                 name="password"
-                type= "password"
+                type="password"
                 onChange={this.handleChange}
                 id="password"
-                placeholder="enter password"
                 value={this.state.password}
-                />
-                <button onClick={this.signup}>Signup</button>
-            </form>
+                className="form-field"
+              />
+            </div>
+  
+            <button onClick={this.signup} className = "form-btn">Signup</button>
+          </form>
         </div>
-    )
+    );
 }
 }
 const mapDispatchToProps = dispatch => {
@@ -56,3 +73,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 export default connect(null , mapDispatchToProps)(Signup);
+

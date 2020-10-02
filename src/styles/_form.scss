@@ -1,0 +1,93 @@
+/*
+ #0a194a bg
+ #1b2956 txtfld bg
+ #455d8d txt
+ #aeb3c3 head
+ #3b26bb btn 1
+ #6833ef btn 2
+ 
+ */
+.bg {
+    width: 100%;
+    height: 100vh;
+    background-color: #0a194a ;
+    position: relative;
+}
+
+.form {
+    width: 40%;
+    margin: 0 auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50% , -50%);
+
+    &-title {
+        color:#e7e9f0;
+        font-size: 2.2rem;
+        font-weight: 600;
+        padding-bottom: 0;
+        line-height: 0.5;
+    }
+
+    &-field {
+        background-color: #1b2956;
+        border: none;
+        width: 90%;
+        padding: 1rem;
+        margin-top: 5px;
+        border-radius: 5px;
+        color:#e7e9f0;
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    &-label {
+        color: #5671a7;
+        font-size: 1.4rem;
+        font-weight: 500;
+        display: block;
+    }
+
+    &-text {
+        color: #5671a7;
+        font-size: 1.4rem;
+        font-weight: 500;
+    }
+
+    &-link {
+        position: absolute;
+        top: 5%;
+        right: 10%;
+        color: #5671a7;
+        font-size: 1.2rem;
+        font-weight: 500;
+    }
+
+    &-group {
+        margin-top: 2rem;
+    }
+
+    &-btn {
+        width: 90%;
+        padding: .6rem 0;
+        font-size: 1.5rem;
+        color:#e7e9f0;
+        font-weight: 600;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        border: none;
+        cursor: pointer;
+        background-image: linear-gradient(to right , #3b26bb , #6833ef);
+        margin-top: 2.5rem;
+
+        &:active,
+        &:focus,
+        &:visited {
+            outline: none;
+        }
+    }
+
+}
