@@ -1,4 +1,11 @@
 @import '~antd/dist/antd.css';
 
 @import './styles/form';
+@import './styles/header';
+@import './styles/Home';
+@import './styles/reserve';
 
+
+.custome-step .ant-steps-item-finish > .ant-steps-item-container > .ant-steps-item-tail::after {
+    background-color: red !important;
+  }

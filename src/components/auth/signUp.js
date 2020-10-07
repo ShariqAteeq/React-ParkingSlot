@@ -1,6 +1,7 @@
 import React , { Component } from "react";
 import { signup } from '../../store/actions/authActions';
 import { connect } from 'react-redux';
+import bg from "../../img/bg.jpg";
 import { Link } from 'react-router-dom';
 import {
     ArrowRightOutlined
@@ -31,13 +32,21 @@ handleChange(e){
 render()
 {
     return (
-        <div className="bg">
-            <div>
-                <Link to = '/login' className = "form-link">Login <ArrowRightOutlined /></Link>
+      <div className="bg">
+        <div className="container">
+          <div className="bg-left">
+            <div className="bg-text">
+              <h3>Try it free Today!</h3>
+              <p>No Credit Cards, No Money!</p>
+              <Link to="/login" className="form-link">
+                LOGIN
+              </Link>
             </div>
+            <img src={bg} alt="left" className="bg-img" />
+          </div>
           <form className="form">
-          <h2 className = "form-title">Create Account!</h2>
-            <p className = "form-text">Let's join us :)</p>
+            <h2 className="form-title">Create Account!</h2>
+            <p className="form-text">Let's Join us :)</p>
             <div className="form-group">
               <label className="form-label">Email</label>
               <input
@@ -60,10 +69,13 @@ render()
                 className="form-field"
               />
             </div>
-  
-            <button onClick={this.signup} className = "form-btn">Signup</button>
+
+            <button onClick={this.signup} className="form-btn">
+             Signup
+            </button>
           </form>
         </div>
+      </div>
     );
 }
 }

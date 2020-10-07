@@ -1,0 +1,30 @@
+.header {
+    height: 29%;
+    background-image: linear-gradient(to right , rgba(black , 0.8) , rgba(#1b71e2 , 1)) , url("../img/bg.jpg");
+    background-size: cover;
+    background-position: center;
+
+    &-title {
+        font-size: 1.7rem;
+        color: #fff;
+        text-transform: capitalize;
+        font-weight: 600;
+        text-align: center;
+        padding-top: 1.5rem ;
+    }
+
+    &-text {
+        font-size: 1rem;
+        margin-top: -1rem;
+        text-align: center;
+        color: #fff;
+    }
+
+    &-date {
+        font-size: 1.5rem;
+        padding: 0 1rem;
+        font-weight: 500;
+        color: #fff;
+        margin-top: 2rem;
+    }
+}

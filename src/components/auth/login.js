@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import { login } from "../../store/actions/authActions";
 import { connect } from "react-redux";
-import { Link } from 'react-router-dom';
-import {
-    ArrowRightOutlined
-  } from '@ant-design/icons';
+import { Link, Redirect } from "react-router-dom";
+import bg from "../../img/bg.jpg";
+
 
 class Login extends Component {
   constructor(props) {
@@ -30,45 +29,63 @@ class Login extends Component {
   render() {
     return (
       <div className="bg">
-          <div>
-              <Link to = '/signup' className = "form-link">Signup <ArrowRightOutlined /></Link>
+        <div className="container">
+          <div className="bg-left">
+            <div className="bg-text">
+              <h3>Try it free Today!</h3>
+              <p>No Credit Cards, No Money!</p>
+              <Link to="/signup" className="form-link">
+                create account
+              </Link>
+            </div>
+            <img src={bg} alt="left" className="bg-img" />
           </div>
-        <form className="form">
-        <h2 className = "form-title">Here you can Login</h2>
-          <p className = "form-text">Let's Join us :)</p>
-          <div className="form-group">
-            <label className="form-label">Email</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              onChange={this.handleChange}
-              value={this.state.email}
-              className="form-field"
-            />
-          </div>
-          <div className="form-group">
-            <label className="form-label">Password</label>
-            <input
-              name="password"
-              type="password"
-              onChange={this.handleChange}
-              id="password"
-              value={this.state.password}
-              className="form-field"
-            />
-          </div>
+          <form className="form">
+            <h2 className="form-title">Welcome Back!</h2>
+            <p className="form-text">Let's Join us :)</p>
+            <div className="form-group">
+              <label className="form-label">Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                onChange={this.handleChange}
+                value={this.state.email}
+                className="form-field"
+              />
+            </div>
+            <div className="form-group">
+              <label className="form-label">Password</label>
+              <input
+                name="password"
+                type="password"
+                onChange={this.handleChange}
+                id="password"
+                value={this.state.password}
+                className="form-field"
+              />
+            </div>
 
-          <button onClick={this.login} className = "form-btn">Login</button>
-        </form>
+            <button onClick={this.login} className="form-btn">
+              Login
+            </button>
+            {this.props.auth ? <Redirect to="/reserve" /> : null}
+          </form>
+        </div>
       </div>
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    auth: state.auth.auth,
+  };
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
     login: (email, pass) => dispatch(login(email, pass)),
   };
 };
-export default connect(null, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

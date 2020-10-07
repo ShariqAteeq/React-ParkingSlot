@@ -28,6 +28,23 @@ const authReducer = (state = initialState, action) => {
         ...state,
         auth: false,
       };
+    case "logout":
+      console.log('logout success');
+      return {
+        ...state,
+        auth: false
+      }
+    case "isLogged":
+      return {
+        ...state,
+        auth: true
+      }
+    case "Input_success":
+      console.log('ip success');
+      return state;
+      case "Input_err":
+        console.log('ip faid');
+        return state;
     default:
         return state;
   }
