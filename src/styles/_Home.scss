@@ -2,7 +2,7 @@
     width: 100%;
     height: 100vh;
     background-image: linear-gradient(to right , #348dfe , #0f5ec7); 
-    padding: 2rem 8rem;
+    padding: 2rem 5rem;
     //background-color: #0a194a;
 
     &-container {
@@ -11,6 +11,7 @@
       background-color: #fff;
       box-shadow: 0 1rem 3rem rgba($color: #000000, $alpha: 0.6);
       border-radius: 3px;
+      min-height: 38rem;
     }
     &-sidebar {
       flex: 0.25;

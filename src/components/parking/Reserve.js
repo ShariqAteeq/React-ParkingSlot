@@ -1,16 +1,16 @@
 import React, { Component } from "react";
 import { DatePicker, TimePicker, Steps, Button, message } from "antd";
-import { bookReserv } from "../../store/actions/authActions";
+import { bookReserv } from "../../store/actions/parkActions";
 import { connect } from "react-redux";
 import { Radio } from "antd";
 const { Step } = Steps;
 
 const steps = [
   {
-    title: "Select Date & Time",
+    title: "Select Area",
   },
   {
-    title: "Select Area",
+    title: "Select Date & Time",
   },
   {
     title: "Select Slot",
@@ -20,7 +20,6 @@ const steps = [
 class Reserve extends Component {
   constructor(props) {
     super(props);
-    this.login = this.login.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.timeChange = this.timeChange.bind(this);
     this.onChange = this.onChange.bind(this);
@@ -32,14 +31,10 @@ class Reserve extends Component {
       endTime: null,
       Date: "",
       area: "",
+      slot: '',
       current: 0,
     };
   }
-
-  login = (e) => {
-    e.preventDefault();
-    this.props.bookReserv(this.state.name);
-  };
 
   handleChange(e) {
     this.setState({
@@ -69,16 +64,21 @@ class Reserve extends Component {
   bhejdo() {
     let endTime = this.state.startTime + parseInt(this.state.hour);
     let res = {
-      start: this.state.startTime,
-      end: endTime,
+      startTime: this.state.startTime,
+      endTime: endTime,
       area: this.state.area,
       date: this.state.Date,
+      slot: this.state.slot,
+      hour: parseInt(this.state.hour)
     };
+
+    console.log(res);
+
+    this.props.bookReserv(res);
 
     let data = {
       start: 1,
       end: 4,
-      area: "a1",
     };
 
     if (res.start >= data.start && res.start <= data.end) {
@@ -86,7 +86,6 @@ class Reserve extends Component {
     } else {
       console.log("not booked");
     }
-    console.log(res);
   }
 
   next() {
@@ -102,7 +101,7 @@ class Reserve extends Component {
   render() {
     const { current } = this.state;
     let content;
-    if (current == 0) {
+    if (current == 1) {
       content = (
         <div className="res-1">
           <p className="res-1-head">Reservation Date</p>
@@ -135,21 +134,20 @@ class Reserve extends Component {
           </div>
         </div>
       );
-    } else if (current == 1) {
+    } else if (current == 0) {
       content = (
         <div className="res-2">
-          <Radio.Group
-            onChange={(val) => console.log(val)}
-            defaultValue="a"
+          <Radio.Group name = "area"
+            onChange={this.handleChange}
             className="res-grpBtn"
           >
-            <Radio.Button className="res-btn" value="a">
+            <Radio.Button className="res-btn" value="1st-Floor">
               1st Floor
             </Radio.Button>
-            <Radio.Button className="res-btn" value="b">
+            <Radio.Button className="res-btn" value="2nd-Floor">
               2nd Floor
             </Radio.Button>
-            <Radio.Button className="res-btn" value="c">
+            <Radio.Button className="res-btn" value="3rd-Floor">
               3rd Floor
             </Radio.Button>
           </Radio.Group>
@@ -158,8 +156,8 @@ class Reserve extends Component {
     } else {
       content = (
         <div className="res-3">
-          <Radio.Group
-            onChange={(val) => console.log(val)}
+          <Radio.Group name = "slot"
+            onChange={this.handleChange}
             className="res-grpBtn"
           >
             <Radio.Button className="res-3-btn" value="slot1">
@@ -212,7 +210,7 @@ class Reserve extends Component {
           {current === steps.length - 1 && (
             <Button
               type="primary"
-              onClick={() => message.success("Processing complete!")}
+              onClick={this.bhejdo}
             >
               Done
             </Button>
@@ -223,18 +221,6 @@ class Reserve extends Component {
             </Button>
           )}
         </div>
-        {/* 
-        <button onClick={this.login}>Add</button>
-        <select
-          value={this.state.area}
-          onChange={this.handleChange}
-          name="area"
-        >
-          <option value="a1">area1</option>
-          <option value="a2">area2</option>
-        </select>
-
-        <button onClick={this.bhejdo}>bhejdo</button> */}
       </div>
     );
   }

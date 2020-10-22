@@ -1,12 +1,6 @@
 import React, { Component } from "react";
-import fire from "../../config/fire";
-import { logout, bookReserv } from "../../store/actions/authActions";
+import { logout,  } from "../../store/actions/authActions";
 import { connect } from "react-redux";
-import { NavLink , Link } from "react-router-dom";
-import { Steps, Button, message } from "antd";
-//const { Step } = Steps;
-import { DatePicker, TimePicker, Avatar } from "antd";
-import Reserve from '../parking/Reserve'; 
 import Header from '../Header';
 import Sidebar from './sidebar';
 
@@ -32,7 +26,6 @@ class Home extends Component {
 const mapDispatchToProps = (dispatch) => {
   return {
     logout: () => dispatch(logout()),
-    bookReserv: (d) => dispatch(bookReserv(d)),
   };
 };
 export default connect(null, mapDispatchToProps)(Home);

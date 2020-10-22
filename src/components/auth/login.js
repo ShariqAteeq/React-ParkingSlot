@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
 import bg from "../../img/bg.jpg";
 
-
 class Login extends Component {
   constructor(props) {
     super(props);
